@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import EventList from './components/EventList';
 import Modal from './components/Modal';
+import NewEventForm from './components/NewEventForm';
 
 const App = () => {
   // Data
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [showEvents, setShowEvents] = useState(true);
   const [events, setEvents] = useState([
     { title: "mario's birthday bash", id: 1 },
@@ -25,7 +26,10 @@ const App = () => {
   return (
     <div className=" min-h-screen bg-yellow-500">
       <div className="flex justify-center">
-        <button onClick={() => setShowEvents(!showEvents)} className=" bg-yellow-100 p-1 w-1/3 text-yellow-600 rounded">
+        <button
+          onClick={() => setShowEvents(!showEvents)}
+          className=" bg-yellow-100 hover:bg-yellow-50 active:bg-yellow-200 p-1 w-1/3 text-yellow-600 rounded"
+        >
           {showEvents ? 'hide events' : 'show events'}
         </button>
       </div>
@@ -33,10 +37,18 @@ const App = () => {
 
       {!showModal ? null : (
         <Modal setShowModal={setShowModal} showModal={showModal}>
-          <h2 className="font-bold text-xl mb-2">10% Off Coupon Code!!</h2>
-          <p className=" text-sm">Use the code XYZ10 at checkout</p>
+          <NewEventForm />
         </Modal>
       )}
+
+      <div className="text-center">
+        <button
+          onClick={() => setShowModal(true)}
+          className=" bg-yellow-100 hover:bg-yellow-50 active:bg-yellow-200 p-1 w-1/3 text-yellow-600 rounded mt-3"
+        >
+          add new event
+        </button>
+      </div>
     </div>
   );
 };
