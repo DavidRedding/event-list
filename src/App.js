@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import EventList from './components/EventList';
 import Modal from './components/Modal';
 
 const App = () => {
@@ -20,16 +21,6 @@ const App = () => {
     });
   };
 
-  // Map
-  const list = events.map((event) => (
-    <div className="py-5 flex flex-col items-center" key={event.id}>
-      <h2 className=" text-xl font-bold mb-2 text-yellow-200">{event.title}</h2>
-      <button className=" bg-yellow-300 p-1 w-1/2 text-yellow-700 rounded" onClick={() => handleClick(event.id)}>
-        delete event
-      </button>
-    </div>
-  ));
-
   // Return
   return (
     <div className=" min-h-screen bg-yellow-500">
@@ -38,7 +29,8 @@ const App = () => {
           {showEvents ? 'hide events' : 'show events'}
         </button>
       </div>
-      {showEvents ? list : null}
+      {showEvents ? <EventList events={events} handleClick={handleClick} /> : null}
+
       {!showModal ? null : (
         <Modal setShowModal={setShowModal} showModal={showModal}>
           <h2 className="font-bold text-xl mb-2">10% Off Coupon Code!!</h2>
