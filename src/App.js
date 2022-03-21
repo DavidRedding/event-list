@@ -3,6 +3,7 @@ import Modal from './components/Modal';
 
 const App = () => {
   // Data
+  const [showModal, setShowModal] = useState(true);
   const [showEvents, setShowEvents] = useState(true);
   const [events, setEvents] = useState([
     { title: "mario's birthday bash", id: 1 },
@@ -38,10 +39,12 @@ const App = () => {
         </button>
       </div>
       {showEvents ? list : null}
-      <Modal>
-        <h2 className="font-bold text-xl mb-2">10% Off Coupon Code!!</h2>
-        <p className=" text-sm">Use the code XYZ10 at checkout</p>
-      </Modal>
+      {!showModal ? null : (
+        <Modal setShowModal={setShowModal} showModal={showModal}>
+          <h2 className="font-bold text-xl mb-2">10% Off Coupon Code!!</h2>
+          <p className=" text-sm">Use the code XYZ10 at checkout</p>
+        </Modal>
+      )}
     </div>
   );
 };
