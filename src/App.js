@@ -38,7 +38,10 @@ const App = () => {
         </button>
       </div>
       {showEvents ? list : null}
-      <Modal />
+      <Modal>
+        <h2 className="font-bold text-xl mb-2">10% Off Coupon Code!!</h2>
+        <p className=" text-sm">Use the code XYZ10 at checkout</p>
+      </Modal>
     </div>
   );
 };
