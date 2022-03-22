@@ -44,7 +44,7 @@ const App = () => {
       <div className="text-center">
         <button
           onClick={() => setShowModal(true)}
-          className=" bg-yellow-100 hover:bg-yellow-50 active:bg-yellow-200 p-1 w-1/3 text-yellow-600 rounded mt-3"
+          className=" bg-yellow-100 hover:bg-yellow-50 active:bg-yellow-200 p-1 w-1/3 text-yellow-600 rounded mt-2"
         >
           add new event
         </button>
