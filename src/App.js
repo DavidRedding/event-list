@@ -7,11 +7,12 @@ const App = () => {
   // Data
   const [showModal, setShowModal] = useState(false);
   const [showEvents, setShowEvents] = useState(true);
-  const [events, setEvents] = useState([
-    { title: "mario's birthday bash", id: 1 },
-    { title: "bowser's live stream", id: 2 },
-    { title: 'race on moo moo farm', id: 3 },
-  ]);
+  const [events, setEvents] = useState([]);
+
+  const addEvent = (event) => {
+    setEvents((prevEvents) => [...prevEvents, event]);
+    setShowModal(!showModal);
+  };
 
   // Listener CallBack
   const handleClick = (id) => {
@@ -37,7 +38,7 @@ const App = () => {
 
       {!showModal ? null : (
         <Modal setShowModal={setShowModal} showModal={showModal}>
-          <NewEventForm />
+          <NewEventForm addEvent={addEvent} />
         </Modal>
       )}
 

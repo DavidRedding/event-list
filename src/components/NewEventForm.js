@@ -1,18 +1,27 @@
 import { useState } from 'react';
 
-const NewEventForm = () => {
+const NewEventForm = ({ addEvent }) => {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
 
-  const onSubmit = (e) => e.preventDefault();
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const event = {
+      title: title,
+      date: date,
+      id: Math.floor(Math.random() * 1000),
+    };
+    console.log(event);
+    addEvent(event);
+    reset();
+  };
   const reset = () => {
     setDate('');
     setTitle('');
   };
 
   return (
-    <form onSubmit={() => onSubmit()} className="flex flex-col space-y-4 max-w-sm bg-rose-5 mx-auto">
+    <form onSubmit={handleSubmit} className="flex flex-col space-y-6 max-w-sm bg-rose-5 mx-auto">
       <label className=" flex flex-col items-start ">
         <span>Event Title:</span>
         <input
@@ -31,10 +40,7 @@ const NewEventForm = () => {
           value={date}
         />
       </label>
-      <span className=" cursor-pointer text-gray-400 hover:text-gray-500 text-sm" onClick={() => reset()}>
-        reset the form
-      </span>
-      <button className=" block rounded w-1/8 p-1 px-3 mx-auto active:bg-slate-200 hover:bg-slate-100">Submit</button>
+      <button className="  w-1/3 mx-auto  bg-yellow-300 hover:bg-yellow-200 px-7 py-1 rounded">Submit</button>
     </form>
   );
 };
